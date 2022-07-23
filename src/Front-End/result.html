@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<head>
+
+</head>
+<body>
+<!-- aparece escrito o que está no campo "result" do FormResult (é um parâmetro da classe)-->
+<!-- aparece escrito o que está no campo "entityType" do FormResult (é um parâmetro da classe)-->
+<h2><span th:text="${FormResult.result}"></span> creating <span th:text="${FormResult.entityType}"></span></p>
+</h2>
+<div style="color: red">
+     <td th:if="${Error=='1'}"> The game has not started already</td>
+     <td th:if="${Error=='2'}"> The game already end</td>
+     <td th:if="${Error=='3'}"> The game already start</td>
+     <td th:if="${Error=='4'}"> The player has been sent off</td>
+     <td th:if="${Error=='5'}"> The player has already a Yellow Card</td>
+     <td th:if="${Error=='6'}"> The game has already a Red Card</td>
+</div>
+     <br>
+     <!-- textos clicáveis 
+     um leva diretamente para o link do home -->
+     <a href="/home">Home</a>
+     <!-- este leva para o endpoint do create-(depende do que estiver escrito)-->
+     <a th:href="@{'/create-'+${FormResult.entityType}+'?id='+${id}}"> Create another instance</a>
+</body>

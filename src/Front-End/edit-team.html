@@ -1,0 +1,25 @@
+<!--Inês Martins Marçal 2019215917
+Noémia Quintano Mora Gonçalves 2019219433 -->
+
+<form th:action="@{/save-edit-team}" th:object="${teamForm}" method="post">
+    <a href="/home">Home</a>
+    <h2>Edit Team </h2>
+    <br>
+    <div="col-form">
+        <div>
+        <p>Choose team</p>
+        <select id="teams" th:field="*{id}" size="10" required >
+            <option th:each="team : ${allTeams}"
+                    th:value="${{team.id}}"
+                    th:text="${team.name}">
+            </option>
+        </select>
+        </div>
+        <div>
+            <label>Name </label>
+            <input type="text" th:field="*{name}" required>
+        </div>
+    </div>
+    <br>
+    <button type="submit">Update Team</button>
+</form>

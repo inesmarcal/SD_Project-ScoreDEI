@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    
+    <!-- texto no separador -->
+    <title>ScoreDEI</title>
+
+  </head>
+  <body>
+   <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+     
+    <h2>ScoreDEI</h2>
+     
+    
+     <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+      <li class="nav-link px-2 link-dark" th:each="op : ${menu}">
+        <!-- aparece a tal string e essa string vai ter um link associado 
+             que faz com que a palavra no site fique clicável 
+             e leve para o link -->
+        <a th:text="${op.option}" th:href="@{${op.url}}"> </a>
+    </li>
+  </ul>
+
+  <div style="color: red">
+    <td th:if="${error == '0'}" ><br>Invalid credentials</td>
+  </div>
+  </header>
+
+  <!-- Em baixo aparecem os jogos -->
+  <h3>Games<h3>
+    <table class="table table-striped table-hover">
+        <tr>
+            <th>Team A</th>
+            <th>Team B</th>
+            <th>Location</th>
+
+
+        </tr>
+        <!-- aqui entra a lista de todos os games 
+             representada pelo allGames que vem da função 
+             home no ProjetoController.java -->
+        <tr th:each="g : ${allGames}">
+            <!-- mostra (para cada game)
+                 nome da equipa A
+                 nome da equipa B (sabe isto porque faço g (game) .teamA .name)
+                 localização 
+                 detalhes do jogo 
+                 - tem um texto clicável que leva para um endpoint dos details(função no ProjetoController.java) 
+                 - esta função recebe um parâmetro no link (provavelmente se quiseres explico isto again)
+                 registar eventos 
+                 - igual ao de cima mas para registar eventos -->
+            <td th:text="${g.teamA.name}"></td>
+            <td th:text="${g.teamB.name}"></td>
+            <td th:text="${g.location}"></td>
+            <td><a th:href="@{details(id=${g.id})}">Show details</a></td>
+            <td><a th:if="${logged == '1'}" th:href="@{create-event(id=${g.id})}"> Register Events</a></td>
+        </tr>
+    </table>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
