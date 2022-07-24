@@ -11,7 +11,7 @@ Consists in develop a program that will host a "website" to see info about footb
 
 ## Technologies used:
 1. Java
-    - [Version ??](https://www.oracle.com/java/technologies/downloads/) 
+    - [Version 17](https://www.oracle.com/java/technologies/downloads/) 
 2. Spring-boot 
 3. [Maven](https://maven.apache.org/download.cgi)
 4. Thymeleaf
